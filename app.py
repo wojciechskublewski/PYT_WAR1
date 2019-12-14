@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 import random
+import bricks
 from results import dbAdd
 app = Flask(__name__)
 
@@ -17,7 +18,8 @@ def wynik6D():
 
 @app.route("/addBrick",methods=["GET"])
 def addBrickGet():
-    return render_template("addBrick.html")
+    list = bricks.allBricks()
+    return render_template("addBrick.html",list=list)
 
 @app.route("/addBrick",methods=["POST"])
 def addBrickPost():
