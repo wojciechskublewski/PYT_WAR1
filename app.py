@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask import request
 import random
 import bricks
 from results import dbAdd
@@ -23,6 +24,8 @@ def addBrickGet():
 
 @app.route("/addBrick",methods=["POST"])
 def addBrickPost():
+    brick_type_id = request.form["brick_type"]
+    print(brick_type_id)
     return render_template("wynik.html")
 
 

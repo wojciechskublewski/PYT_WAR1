@@ -11,10 +11,11 @@
                 <input type="number" value="1" min="1" name="nbr_throws">
         </label><br>
             Podaj kostke:
+                <select name="brick_type">
                     {% for i in list %}
-                        <input type="radio" name="brick_type" id="{{ i["brick_type_id"] }}"> {{ i["brick_type"] }}
+                            <option  value="{{ i["brick_type_id"] }}">{{ i["brick_type"] }}</option>
                     {% endfor %}
-
+                </select>
         </label><br>
         <label>
             Podaj wartos jaka trzeba odjac/dodac:
