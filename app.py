@@ -15,5 +15,14 @@ def wynik6D():
     dbAdd("warsztat1",result)
     return render_template("wynik.html", result =result)
 
+@app.route("/addBrick",methods=["GET"])
+def addBrickGet():
+    return render_template("addBrick.html")
+
+@app.route("/addBrick",methods=["POST"])
+def addBrickPost():
+    return render_template("wynik.html")
+
+
 if __name__ == '__main__':
     app.run()
