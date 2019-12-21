@@ -25,8 +25,12 @@ def addBrickGet():
 @app.route("/addBrick",methods=["POST"])
 def addBrickPost():
     brick_type_id = request.form["brick_type"]
-    print(brick_type_id)
-    return render_template("wynik.html")
+    number_of_throws = request.form['nbr_throws']
+    number_to_add = request.form['nbr_help']
+
+    bricks.addBrick(number_of_throws,brick_type_id,number_to_add)
+
+    return render_template("ok.html")
 
 
 if __name__ == '__main__':
