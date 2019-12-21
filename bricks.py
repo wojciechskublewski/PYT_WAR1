@@ -14,6 +14,42 @@ def allBricks():
     cnx.close()
     return list
 
+
+def queryBrick(b_id):
+    sql = f"select * from bricks where brick_id = '{b_id}'"
+    list = []
+    cnx = db_con.create_connection("warsztat1")
+    crs = cnx.cursor(cursor_factory=RealDictCursor)
+    crs.execute(sql)
+    for row in crs:
+        list.append({"brick_id": row["brick_id"],
+                     "brick_type_id": row["brick_type_id"],
+                     "number_of_throws": row["number_of_throws"],
+                     "number_to_include": row["number_to_include"],
+                     "brick_name": row["brick_name"]})
+    sql = f"select brick_type from brick_types where brick_type_id = '{list[0].get('brick_type_id')}'"
+    crs.execute(sql)
+
+    for row in crs:
+        list.append({"brick_type": row["brick_type"]})
+    crs.close()
+    cnx.close()
+    return list
+
+
+def allBricksNames():
+    sql = "select brick_id, brick_name from bricks"
+    list=[]
+    cnx = db_con.create_connection("warsztat1")
+    crs = cnx.cursor(cursor_factory=RealDictCursor)
+    crs.execute(sql)
+    for row in crs:
+        list.append({"brick_id": row["brick_id"],
+                     "brick_name": row["brick_name"]})
+    crs.close()
+    cnx.close()
+    return list
+
 def addBrick(number_of_throws, brick_type, number_to_add):
     brick = nameBrick(number_of_throws, brick_type, number_to_add)
     sql = f"insert into bricks(brick_type_id, number_of_throws, number_to_include, brick_name) values ({brick_type}, {number_of_throws}, {number_to_add}, '{brick}') returning brick_id"
@@ -55,6 +91,6 @@ def nameBrick(number_of_throws, b_type, number_to_add):
 
     return brick
 
-print(nameBrick('1',2,'-1'))
+print(queryBrick('6'))
 
-addBrick("1",1,"0")
+
