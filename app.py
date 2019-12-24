@@ -3,20 +3,20 @@ from flask import render_template
 from flask import request
 import random
 import bricks
+import result
 from results import dbAdd
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return render_template('ok.html')
+    return render_template('start.html')
 
-
-@app.route('/losuj', methods=["GET"])
+@app.route('/brick', methods=["GET"])
 def doLosowania():
     brick_list = bricks.allBricksNames()
-    return render_template('start.html',brick_list= brick_list)
+    return render_template('brick.html',brick_list= brick_list)
 
-@app.route('/losuj',methods=["POST"])
+@app.route('/brick',methods=["POST"])
 def losowanie():
     brick_id = request.form["brick_id"]
     list = bricks.queryBrick(brick_id)
@@ -25,8 +25,19 @@ def losowanie():
     final_result = {"brick": list[0].get("brick_name"),
                     "wynik": wynik,
                     "brick_id": brick_id}
+    result.addResult(brick_id,wynik)
     return render_template("wynik.html", result = final_result)
 
+@app.route("/addBrickType", methods=["GET"])
+def addBrickTypeDet():
+    brick_type_list = bricks.allBricks()
+    return render_template("addBrickType.html", list = brick_type_list)
+
+@app.route("/addBrickType", methods=["POST"])
+def addBrickTypePost():
+    brick_type = request.form["brick_type"]
+    bricks.addBrickTypes(brick_type)
+    return render_template("ok.html")
 
 @app.route("/wynik", methods=["GET"])
 def wynikD():

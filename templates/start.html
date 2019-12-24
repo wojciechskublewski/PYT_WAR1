@@ -7,19 +7,11 @@
 <body>
     <p>Witaj!</p>
 
-    <form method="post">
-            Wybierz kostke:
-                <select name="brick_id">
-                    {% for i in brick_list %}
-                            <option  value="{{ i["brick_id"] }}">{{ i["brick_name"] }}</option>
-                    {% endfor %}
-                </select>
-        </label><br>
-            <button type="submit">Wylosuj</button>
-        </label>
+    <p><button onclick="window.location.href = '/brick';">losuj</button></p>
 
-    </form>
+    <p><button onclick="window.location.href = '/addBrick';">dodaj kostke</button></p>
 
-    <p><button onclick="window.location.href = '/wynik';">Click Here</button></p>
+    <p><button onclick="window.location.href = '/addBrickType';">dodaj typ kostki</button></p>
+
 </body>
 </html>

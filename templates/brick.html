@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+            Wybierz kostke:
+                <select name="brick_id">
+                    {% for i in brick_list %}
+                            <option  value="{{ i["brick_id"] }}">{{ i["brick_name"] }}</option>
+                    {% endfor %}
+                </select>
+        </label><br>
+            <button type="submit">Wylosuj</button>
+        </label>
+
+</form>
+
+<p><button onclick="window.location.href = '/addBrick';">dodaj kostke</button></p>
+
+</body>
+</html>

@@ -5,6 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-    <p>Wynik dla kostki {{ result["brick"]}} to {{ result["wynik"] }}</p>
+<form method="post">
+        <label>Wynik dla kostki {{ result["brick"]}} to {{ result["wynik"] }}</label><br>
+
+        <input type=number name ="brick_id" value="{{ result["brick_id"]}}" hidden><br>
+
+        <label>
+            <button type="submit">Losuj ponownie</button>
+        </label>
+    </form>
+
+    <p><button onclick="window.location.href = '/brick';">losuj</button></p>
+
+    <p><button onclick="window.location.href = '/addBrick';">dodaj kostke</button></p>
+
+    <p><button onclick="window.location.href = '/addBrickType';">dodaj typ kostki</button></p>
 </body>
 </html>
